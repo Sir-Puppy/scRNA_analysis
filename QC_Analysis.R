@@ -97,8 +97,10 @@ metadata$mtUMI_MM <- Matrix::colSums(counts2[which(rownames(counts2) %in% mtMM),
 metadata$mitoRatio_HS <- metadata$mtUMI_HS/metadata$nUMI
 metadata$mitoRatio_MM <- metadata$mtUMI_MM/metadata$nUMI
 
-########################################################################################################################################
 
+
+########################################################################################################################################
+#Strangely, no mitochondrial sequences were found, so we resorted to the following 3 lines of code
 
 # Compute percent mito ratio
 merged_seurat$mitoRatio <- PercentageFeatureSet(object = merged_seurat, pattern = "^MT-")
@@ -106,6 +108,9 @@ merged_seurat$mitoRatio <- merged_seurat@meta.data$mitoRatio / 100
 
 # Create metadata dataframe
 metadata <- merged_seurat@meta.data
+
+#######################################################################################################
+#continued as usual from here
 
 # Add cell IDs to metadata
 metadata$cells <- rownames(metadata)
